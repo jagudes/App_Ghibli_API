@@ -15,6 +15,13 @@ class FilmDetailScreen extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            Image.network(
+              film.image,
+              width: double.infinity,
+              height: 200,
+              fit: BoxFit.cover,
+            ),
+            const SizedBox(height: 16),
             Text("Reżyser: ${film.director}", style: const TextStyle(fontSize: 18)),
             const SizedBox(height: 10),
             Text("Opis:", style: const TextStyle(fontWeight: FontWeight.bold)),
