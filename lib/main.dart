@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'film_list_screen.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
   runApp(const MyApp());
 }
 
