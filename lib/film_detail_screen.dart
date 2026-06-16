@@ -10,7 +10,7 @@ class FilmDetailScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: Text(film.title)),
-      body: Padding(
+      body: SingleChildScrollView(
         padding: const EdgeInsets.all(16.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -21,6 +21,10 @@ class FilmDetailScreen extends StatelessWidget {
               child: Image.network(
                 film.image,
                 fit: BoxFit.contain,
+                loadingBuilder: (context, child, loadingProgress){
+                  if (loadingProgress == null) return child;
+                  return const Center(child: CircularProgressIndicator());
+                },
                 alignment: Alignment.center,
                 errorBuilder: (context, error, stackTrace) => Container(
                   color: Colors.grey[200],
