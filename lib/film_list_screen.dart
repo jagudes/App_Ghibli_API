@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'ghibli_service.dart';
 import 'film_model.dart';
+import 'film_detail_screen.dart';
 
 class FilmListScreen extends StatefulWidget {
   const FilmListScreen({super.key});
@@ -43,6 +44,14 @@ class _FilmListScreenState extends State<FilmListScreen> {
                 title: Text(film.title),
                 subtitle: Text("Reżyser: ${film.director}"),
                 leading: const Icon(Icons.movie),
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => FilmDetailScreen(film: film),
+                    ),
+                  );
+                },
               );
             },
           );
