@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:ghibli_app/analytics_service.dart';
 import 'ghibli_service.dart';
 import 'film_model.dart';
 import 'film_detail_screen.dart';
@@ -16,6 +17,7 @@ class _FilmListScreenState extends State<FilmListScreen> {
 
   @override
   void initState() {
+    AnalyticsService.logEvent('view_film_list', {});
     super.initState();
     _filmsFuture = _ghibliService.fetchFilms();
   }

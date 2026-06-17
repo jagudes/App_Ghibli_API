@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:ghibli_app/analytics_service.dart';
 import 'film_model.dart';
 
 class FilmDetailScreen extends StatelessWidget {
@@ -8,6 +9,7 @@ class FilmDetailScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    AnalyticsService.logEvent('view_film_details', {'title': film.title});
     return Scaffold(
       appBar: AppBar(title: Text(film.title)),
       body: SingleChildScrollView(

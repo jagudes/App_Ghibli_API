@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "541116576259",
+    "project_id": "ghibliapp-baf5e",
+    "storage_bucket": "ghibliapp-baf5e.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:541116576259:android:88c7cf15dbb619c07f1436",
+        "android_client_info": {
+          "package_name": "com.example.ghibli_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB2dKzVLzX8Za5ifwPMMgooi_x3mdjifOo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
