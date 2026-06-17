@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:ghibli_app/film_model.dart';
+import 'film_detail_screen.dart';
 
 class FavoritesScreen extends StatelessWidget {
   final Set<String> favoriteIds;
@@ -22,10 +23,23 @@ class FavoritesScreen extends StatelessWidget {
           final film = favorites[index];
           return ListTile(
             title: Text(film.title),
+            subtitle: Text("Reżyser: ${film.director}"),
+            leading: const Icon(Icons.movie),
             trailing: IconButton(
-              icon: const Icon(Icons.favorite, color: Colors.red),
+              icon: const Icon(
+                Icons.favorite,
+                color: Colors.red,
+              ),
               onPressed: () => onToggleFavorite(film.id),
             ),
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => FilmDetailScreen(film: film),
+                ),
+              );
+            },
           );
         },
       ),
