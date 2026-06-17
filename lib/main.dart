@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'film_list_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'home_screen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -19,7 +19,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: const FilmListScreen(),
+      home: const HomeScreen(),
     );
   }
 }

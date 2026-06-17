@@ -5,7 +5,14 @@ import 'film_model.dart';
 import 'film_detail_screen.dart';
 
 class FilmListScreen extends StatefulWidget {
-  const FilmListScreen({super.key});
+  final Function(String) onToggleFavorite;
+  final Set<String> favorites;
+
+  const FilmListScreen({
+    super.key,
+    required this.onToggleFavorite,
+    required this.favorites
+  });
 
   @override
   State<FilmListScreen> createState() => _FilmListScreenState();
@@ -75,25 +82,46 @@ class _FilmListScreenState extends State<FilmListScreen> {
           }
 
           final films = snapshot.data!;
-          return ListView.builder(
-            itemCount: films.length,
-            itemBuilder: (context, index) {
-              final film = films[index];
-              return ListTile(
-                title: Text(film.title),
-                subtitle: Text("Reżyser: ${film.director}"),
-                leading: const Icon(Icons.movie),
-                onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => FilmDetailScreen(film: film),
+          return RefreshIndicator(
+              onRefresh: () async {
+                print("DEBUG: OnRefresh wywołane!");
+                AnalyticsService.logEvent('refresh_film_list', {});
+                setState(() {
+                  _filmsFuture = _ghibliService.fetchFilms();
+                });
+                await _filmsFuture;
+              },
+
+              child: ListView.builder(
+                physics: const AlwaysScrollableScrollPhysics(),
+                itemCount: films.length,
+                itemBuilder: (context, index) {
+                  final film = films[index];
+                  return ListTile(
+                    title: Text(film.title),
+                    subtitle: Text("Reżyser: ${film.director}"),
+                    leading: const Icon(Icons.movie),
+                    trailing: IconButton(
+                      icon: Icon(
+                        widget.favorites.contains(film.id)
+                            ? Icons.favorite
+                            : Icons.favorite_border,
+                        color: Colors.red,
+                      ),
+                      onPressed: () => widget.onToggleFavorite(film.id),
                     ),
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => FilmDetailScreen(film: film),
+                        ),
+                      );
+                    },
                   );
                 },
+              ),
               );
-            },
-          );
         },
       ),
     );
