@@ -1,7 +1,7 @@
 import 'dart:convert';
 import 'package:ghibli_app/analytics_service.dart';
 import 'package:http/http.dart' as http;
-import 'film_model.dart';
+import 'package:ghibli_app/film_model.dart';
 import 'database_helper.dart';
 
 class GhibliService {

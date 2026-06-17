@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:ghibli_app/analytics_service.dart';
-import 'film_model.dart';
+import 'package:ghibli_app/film_model.dart';
 
 class FilmDetailScreen extends StatelessWidget {
   final FilmModel film;

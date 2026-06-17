@@ -1,17 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:ghibli_app/analytics_service.dart';
 import 'ghibli_service.dart';
-import 'film_model.dart';
+import 'package:ghibli_app/film_model.dart';
 import 'film_detail_screen.dart';
 
 class FilmListScreen extends StatefulWidget {
   final Function(String) onToggleFavorite;
   final Set<String> favorites;
+  final List<FilmModel> films;
 
   const FilmListScreen({
     super.key,
     required this.onToggleFavorite,
-    required this.favorites
+    required this.favorites,
+    required this.films,
   });
 
   @override
@@ -108,7 +110,10 @@ class _FilmListScreenState extends State<FilmListScreen> {
                             : Icons.favorite_border,
                         color: Colors.red,
                       ),
-                      onPressed: () => widget.onToggleFavorite(film.id),
+                      onPressed: () {
+                        widget.onToggleFavorite(film.id);
+                        setState(() {});
+                      },
                     ),
                     onTap: () {
                       Navigator.push(
