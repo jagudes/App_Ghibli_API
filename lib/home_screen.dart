@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:ghibli_app/film_model.dart';
+import 'package:ghibli_app/profile_screen.dart';
 import 'film_list_screen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'favorites_screen.dart';
@@ -67,6 +68,7 @@ class _HomeScreenState extends State<HomeScreen> {
         onToggleFavorite: _toggleFavorite,
         allFilms: _allFilms,
       ),
+      const ProfileScreen(),
     ];
 
     return Scaffold(
@@ -79,6 +81,7 @@ class _HomeScreenState extends State<HomeScreen> {
         items: const [
           BottomNavigationBarItem(icon: Icon(Icons.movie), label: 'Filmy'),
           BottomNavigationBarItem(icon: Icon(Icons.favorite), label: 'Ulubione'),
+          BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Profil'),
         ],
       ),
     );
