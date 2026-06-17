@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'ghibli_service.dart';
 import 'film_model.dart';
+import 'film_detail_screen.dart';
 
 class FavoritesScreen extends StatelessWidget {
   final Set<String> favoriteIds;
+  final Function(String) onToggleFavorite;
 
-  const FavoritesScreen({super.key, required this.favoriteIds});
+  const FavoritesScreen({super.key, required this.favoriteIds, required this.onToggleFavorite});
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +24,26 @@ class FavoritesScreen extends StatelessWidget {
 
           return ListView.builder(
             itemCount: favorites.length,
-            itemBuilder: (context, index) => ListTile(title: Text(favorites[index].title)),
+            itemBuilder: (context, index) {
+              final film = favorites[index];
+              return ListTile(
+                title: Text(film.title),
+                subtitle: Text("Reżyser: ${film.director}"),
+                leading: const Icon(Icons.movie),
+                trailing: IconButton(
+                  icon: const Icon(Icons.favorite, color: Colors.red),
+                  onPressed: () => onToggleFavorite(film.id),
+                ),
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => FilmDetailScreen(film: film),
+                    ),
+                  );
+                },
+              );
+            },
           );
         },
       ),

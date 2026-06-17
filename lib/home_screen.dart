@@ -23,7 +23,7 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     final List<Widget> pages = [
       FilmListScreen(onToggleFavorite: _toggleFavorite, favorites: _favoriteIds),
-      FavoritesScreen(favoriteIds: _favoriteIds),
+      FavoritesScreen(favoriteIds: _favoriteIds, onToggleFavorite: _toggleFavorite),
     ];
 
     return Scaffold(
